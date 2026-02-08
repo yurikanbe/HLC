@@ -1,0 +1,95 @@
+/* cart.html専用のスタイル */
+
+.hero {
+  padding: 20px 0 8px;
+  display: grid;
+  gap: 6px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: .3px;
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: linear-gradient(180deg, #101725, #0b121d);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+}
+
+.thumb {
+  width: 42%;
+  aspect-ratio: 4/3;
+  background: #0e1520;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.content {
+  flex: 1;
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.summary {
+  margin-top: 24px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #0f1621;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.empty {
+  margin: 20px 0;
+  color: var(--muted);
+}
+
+.summary-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.empty-actions {
+  margin-left: 8px;
+}
+
+.btn.danger {
+  background: #2a0f14;
+  border-color: #4a1b22;
+  color: #ff9aa5;
+}
+
+
+
+
+
+

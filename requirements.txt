@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+pandas
+ecdsa
+requests
+pydantic
+jinja2
+python-multipart
+sqlalchemy
+psycopg2-binary
+passlib[bcrypt]
+bcrypt<4.0.0
+python-jose[cryptography]
+python-dotenv
+google-cloud-secret-manager

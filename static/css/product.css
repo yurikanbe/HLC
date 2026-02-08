@@ -1,0 +1,234 @@
+/* product.html専用のスタイル */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.media {
+  width: 100%;
+  background: #0e1520;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.content {
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* フォーム要素のスタイル */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.required {
+  color: #ff6b6b;
+}
+
+.image-preview,
+.media-preview {
+  margin-top: 1rem;
+}
+
+.media-preview img,
+.media-preview audio {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  
+  .input,
+  .select {
+    font-size: 16px; /* iOSでズームを防ぐ */
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+  
+  .actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .media-preview img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .media-preview audio {
+    width: 100%;
+  }
+}
+
+/* 出品者情報セクション */
+.seller-section {
+  padding: 16px;
+  background: #192233;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 16px 0;
+  visibility: visible !important;
+}
+
+.seller-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.seller-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #0e1520;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.seller-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.seller-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.seller-name {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: var(--fg);
+}
+
+.seller-tag {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.seller-info-link {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.seller-info-link:hover {
+  opacity: 0.9;
+  transform: translateX(2px);
+}
+
+.seller-info-link:visited {
+  color: inherit;
+}
+
+.seller-info-link[href="#"] {
+  cursor: default;
+  pointer-events: none;
+}
+
+.seller-info-link:not([href="#"]):not([href=""]) {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+@media (max-width: 480px) {
+  .seller-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .seller-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 12px;
+  }
+  
+  .title {
+    font-size: 18px;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    font-size: 14px;
+  }
+}
+
+
+
+

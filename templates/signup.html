@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>アカウント作成 - japanft</title>
+  <meta name="description" content="新規アカウント作成">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/">ホーム</a>
+          <a class="btn" href="/login">ログイン</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>アカウント作成</h1>
+      <p class="muted">一般ユーザーはメールのみ、出品者は5桁ユーザー名+パスワードが必須です。作成後、メールに6桁のOTPコードが送信されます。</p>
+    </section>
+
+    <section class="card">
+      <div class="form">
+        <input id="displayName" class="input" placeholder="表示名" autocomplete="name">
+        <input id="email" class="input" placeholder="メールアドレス" type="email" autocomplete="email">
+        <input id="password" class="input" placeholder="パスワード" type="password" autocomplete="new-password">
+        <button id="signup" class="btn primary" type="button">作成</button>
+        <div id="msg" class="muted"></div>
+        <div class="muted">既にアカウントがある方は <a href="/login" class="btn form-link">ログイン</a></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/js/signup.js"></script>
+</body>
+</html>
+
+

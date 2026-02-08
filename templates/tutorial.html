@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>使い方ガイド - japanft</title>
+    <meta name="description" content="japanftの使い方ガイド" />
+    <link rel="icon" href="/static/img/halcoin.png" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/tutorial.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="nav">
+          <div class="brand">
+            <div class="brand-badge"></div>
+            <a href="/">japanft</a>
+          </div>
+          <div class="nav-actions">
+            <form
+              id="navSearch"
+              class="nav-search-form"
+              action="/search"
+              method="get"
+            >
+              <input
+                name="q"
+                class="input input-full"
+                type="search"
+                placeholder="作品名を検索...（Enterで検索）"
+              />
+            </form>
+            <a class="btn" href="/">ホーム</a>
+            <a class="btn" href="/purchases">購入履歴</a>
+            <a class="btn" href="/cart"
+              >🛒 カート <span class="cart-count" id="cartCount">0</span></a
+            >
+            <a class="btn" href="/chat">💬 チャット</a>
+            <a class="btn" href="/mining">⚒️ マイニング</a>
+            <a class="btn" href="/create">🎨 出品</a>
+            <a class="btn" href="/mint">🔗 ミント管理</a>
+            <a class="btn" href="/profile">👤 プロフィール</a>
+            <a class="btn active" href="/tutorial">📖 使い方</a>
+            <a class="btn" href="/login">ログイン</a>
+            <a class="btn" href="/signup">アカウント作成</a>
+            <a class="btn" href="/purchases">📦 所持NFT</a>
+            <a class="btn" href="/transfer">💰 送金</a>
+            <div class="notification-wrapper">
+              <button
+                id="notificationBtn"
+                class="btn notification-btn"
+                type="button"
+                aria-label="通知"
+              >
+                🔔
+                <span
+                  id="notificationBadge"
+                  class="notification-badge"
+                  style="display: none"
+                  >0</span
+                >
+              </button>
+              <div
+                id="notificationDropdown"
+                class="notification-dropdown"
+                style="display: none"
+              >
+                <div class="notification-header">
+                  <strong>通知</strong>
+                  <button id="markAllReadBtn" class="btn-link" type="button">
+                    すべて既読
+                  </button>
+                </div>
+                <div id="notificationList" class="notification-list">
+                  <div class="notification-empty">通知はありません</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <h1>使い方ガイド</h1>
+        <p class="muted">
+          japanftの基本的な使い方をステップバイステップで説明します。
+        </p>
+      </section>
+
+      <nav class="tutorial-nav" id="tutorialNav">
+        <a href="#getting-started" class="nav-link active">はじめに</a>
+        <a href="#account" class="nav-link">アカウント作成</a>
+        <a href="#mining" class="nav-link">マイニング</a>
+        <a href="#buying" class="nav-link">NFT購入</a>
+        <a href="#selling" class="nav-link">NFT出品</a>
+        <a href="#other" class="nav-link">その他の機能</a>
+      </nav>
+
+      <div class="tutorial-content">
+        <!-- はじめに -->
+        <section id="getting-started" class="tutorial-section">
+          <h2>はじめに</h2>
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>japanftとは</h3>
+              <p>
+                japanftは、ブロックチェーン技術を使ったNFT（Non-Fungible
+                Token）販売所です。以下の機能を提供しています：
+              </p>
+              <ul>
+                <li>
+                  <strong>マイニング機能</strong
+                  >：その場で低難易度マイニングを行い、オリジナル仮想通貨を発行できます
+                </li>
+                <li>
+                  <strong>NFT販売</strong
+                  >：管理者作成品とパスワード作成利用者の出品物を表示・購入できます
+                </li>
+                <li>
+                  <strong>ログイン機能</strong
+                  >：4桁番号でアカウント確認、出品者のみパスワード+5桁ユーザー名が必須です
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>必要なもの</h3>
+              <ul>
+                <li>インターネット接続</li>
+                <li>Webブラウザ（Chrome、Firefox、Safari、Edgeなど）</li>
+                <li>スマートフォンまたはPC</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- アカウント作成 -->
+        <section id="account" class="tutorial-section">
+          <h2>アカウント作成とログイン</h2>
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>アカウント作成</h3>
+              <ol>
+                <li>トップページの「アカウント作成」ボタンをクリック</li>
+                <li>
+                  4桁の番号が自動的に発行されます（この番号をメモしておきましょう）
+                </li>
+                <li>
+                  出品したい場合は、パスワードと5桁のユーザー名を設定します
+                </li>
+                <li>「アカウント作成」ボタンをクリックして完了</li>
+              </ol>
+              <div class="tip-box">
+                <strong>💡 ヒント</strong>
+                <p>
+                  4桁番号はアカウント確認に使用します。忘れないように保存しておきましょう。
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>ログイン</h3>
+              <ol>
+                <li>トップページの「ログイン」ボタンをクリック</li>
+                <li>発行された4桁番号を入力</li>
+                <li>出品者の場合は、パスワードとユーザー名も入力</li>
+                <li>「ログイン」ボタンをクリック</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- マイニング -->
+        <section id="mining" class="tutorial-section">
+          <h2>マイニング機能</h2>
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>マイニングとは</h3>
+              <p>
+                マイニングは、ブロックチェーン上で新しいブロックを生成し、報酬として仮想通貨を獲得するプロセスです。japanftでは、低難易度のマイニングをその場で行うことができます。
+              </p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>マイニングの手順</h3>
+              <ol>
+                <li>ナビゲーションバーの「⚒️ マイニング」ボタンをクリック</li>
+                <li>マイニングページで「マイニング開始」ボタンをクリック</li>
+                <li>
+                  マイニングが完了すると、報酬として仮想通貨が付与されます
+                </li>
+                <li>獲得した仮想通貨は、NFT購入や送金に使用できます</li>
+              </ol>
+              <div class="tip-box">
+                <strong>💡 ヒント</strong>
+                <p>
+                  マイニングには時間がかかる場合があります。ページを閉じずに待ちましょう。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- NFT購入 -->
+        <section id="buying" class="tutorial-section">
+          <h2>NFTの購入</h2>
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>NFTを探す</h3>
+              <ol>
+                <li>トップページで人気のコレクションを閲覧</li>
+                <li>検索バーで作品名を検索</li>
+                <li>「もっと見る」や「特集を見る」から詳細を確認</li>
+              </ol>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>NFTの詳細を確認</h3>
+              <p>
+                NFTカードをクリックすると、詳細ページが表示されます。以下の情報を確認できます：
+              </p>
+              <ul>
+                <li>出品時間</li>
+                <li>出品者</li>
+                <li>商品名</li>
+                <li>商品紹介文</li>
+                <li>商品写真</li>
+                <li>ブロックチェーン情報</li>
+                <li>値段</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>カートに追加・購入</h3>
+              <ol>
+                <li>気に入ったNFTの「カートに追加」ボタンをクリック</li>
+                <li>複数のNFTをカートに追加できます</li>
+                <li>ナビゲーションバーの「🛒 カート」ボタンをクリック</li>
+                <li>カート内の商品を確認し、「購入する」ボタンをクリック</li>
+                <li>購入確認画面で「購入する」をクリックして完了</li>
+              </ol>
+              <div class="warning-box">
+                <strong>⚠️ 注意</strong>
+                <p>
+                  購入は取り消しできません。十分に確認してから購入してください。
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>購入履歴の確認</h3>
+              <ol>
+                <li>
+                  ナビゲーションバーの「購入履歴」または「📦 所持NFT」をクリック
+                </li>
+                <li>購入したNFTの一覧が表示されます</li>
+                <li>各NFTの詳細を確認できます</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- NFT出品 -->
+        <section id="selling" class="tutorial-section">
+          <h2>NFTの出品</h2>
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>出品の準備</h3>
+              <p>NFTを出品するには、以下の条件が必要です：</p>
+              <ul>
+                <li>
+                  アカウント作成時にパスワードと5桁のユーザー名を設定していること
+                </li>
+                <li>
+                  出品したい画像ファイル（スマホカメラ・スクリーンショット対応）
+                </li>
+                <li>商品名と商品紹介文</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>出品手順</h3>
+              <ol>
+                <li>ナビゲーションバーの「🎨 出品」ボタンをクリック</li>
+                <li>
+                  出品フォームに以下を入力：
+                  <ul>
+                    <li>商品名</li>
+                    <li>商品紹介文</li>
+                    <li>値段（仮想通貨）</li>
+                  </ul>
+                </li>
+                <li>
+                  「画像を選択」ボタンをクリックして商品写真をアップロード
+                </li>
+                <li>スマートフォンの場合は、カメラで直接撮影することも可能</li>
+                <li>すべての情報を確認し、「出品する」ボタンをクリック</li>
+              </ol>
+              <div class="tip-box">
+                <strong>💡 ヒント</strong>
+                <p>
+                  商品紹介文は、購入者が商品を理解しやすくなるよう、詳しく書くことをおすすめします。
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>出品後の確認</h3>
+              <ol>
+                <li>出品が完了すると、NFTがマーケットプレイスに表示されます</li>
+                <li>
+                  「🔗 ミント管理」ページで、自分が出品したNFTを管理できます
+                </li>
+                <li>購入があった場合は、通知でお知らせします</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- その他の機能 -->
+        <section id="other" class="tutorial-section">
+          <h2>その他の機能</h2>
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>プロフィール</h3>
+              <p>
+                「👤
+                プロフィール」ページで、自分のアカウント情報を確認・編集できます。
+              </p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>送金機能</h3>
+              <ol>
+                <li>「💰 送金」ページを開く</li>
+                <li>送金先のウォレットアドレスを入力</li>
+                <li>送金額を入力</li>
+                <li>「送金する」ボタンをクリック</li>
+              </ol>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>チャット機能</h3>
+              <p>
+                「💬
+                チャット」ページで、他のユーザーとメッセージをやり取りできます。
+              </p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>通知機能</h3>
+              <p>
+                ナビゲーションバーの「🔔」アイコンをクリックすると、通知一覧が表示されます。新しい購入やメッセージなどの通知を確認できます。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="tutorial-section">
+          <h2>よくある質問（FAQ）</h2>
+          <div class="faq-item">
+            <h3 class="faq-question">Q. 4桁番号を忘れてしまいました</h3>
+            <p class="faq-answer">
+              A.
+              4桁番号は再発行できません。アカウント作成時に必ずメモを取るようにしてください。
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-question">
+              Q. 出品したいのですが、パスワードを設定していません
+            </h3>
+            <p class="faq-answer">
+              A.
+              出品機能を使用するには、アカウント作成時にパスワードと5桁のユーザー名を設定する必要があります。新しいアカウントを作成してください。
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-question">Q. 購入したNFTはどこで確認できますか？</h3>
+            <p class="faq-answer">
+              A. ナビゲーションバーの「📦
+              所持NFT」または「購入履歴」から確認できます。
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-question">
+              Q. マイニングはどのくらいの時間がかかりますか？
+            </h3>
+            <p class="faq-answer">
+              A.
+              難易度によって異なりますが、通常は数秒から数分程度です。ページを閉じずに待ちましょう。
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-question">Q. 画像のアップロードに失敗します</h3>
+            <p class="faq-answer">
+              A.
+              画像ファイルのサイズが大きすぎる可能性があります。画像を圧縮するか、別の画像を試してください。
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+          "
+        >
+          <div>© 2025 japanft サンプル</div>
+          <div style="display: flex; gap: 1rem">
+            <a href="/terms" style="color: var(--muted); text-decoration: none"
+              >利用規約</a
+            >
+            <a
+              href="/tutorial"
+              style="color: var(--muted); text-decoration: none"
+              >使い方</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast"></div>
+
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/notifications.js"></script>
+    <script src="/static/js/tutorial.js"></script>
+    <script>
+      // カートカウント更新
+      function updateCartCount() {
+        try {
+          const cart = JSON.parse(localStorage.getItem("nft_cart") || "[]");
+          const cartCount = document.getElementById("cartCount");
+          if (cartCount) {
+            cartCount.textContent = String(cart.length);
+          }
+        } catch (error) {
+          console.error("カートカウント更新エラー:", error);
+        }
+      }
+      updateCartCount();
+    </script>
+  </body>
+</html>

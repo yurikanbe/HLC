@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>閲覧URL発行 - japanft</title>
+  <meta name="description" content="購入商品の閲覧URLを発行">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/access.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/">ホーム</a>
+          <a class="btn" href="/purchases">購入履歴</a>
+          <a class="btn" href="/profile">👤 プロフィール</a>
+        </div>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>閲覧URLの発行</h1>
+      <p class="muted">購入済みの作品ごとに閲覧用URL（トークン付き）を発行できます。</p>
+    </section>
+
+    <section id="grid" class="grid"></section>
+    <p id="emptyMsg" class="muted" hidden>購入済みの商品がありません。</p>
+  </main>
+
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/access.js"></script>
+</body>
+</html>
+
+

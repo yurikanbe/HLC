@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>検索 - japanft</title>
+  <meta name="description" content="作品検索ページ">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/search.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <form id="form" class="nav-search-form" action="/search" method="get">
+            <input id="q2" name="q" class="input input-full" type="search" placeholder="作品名を検索...">
+          </form>
+          <a class="btn" href="/cart">🛒 カート</a>
+          <a class="btn" href="/transfer">💰 送金</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1 id="pageTitle">検索</h1>
+      <p class="muted" id="pageDescription">キーワードから作品を探します。</p>
+    </section>
+
+    <div class="toolbar">
+      <select id="sort" class="select">
+        <option value="relevance">関連順</option>
+        <option value="price-asc">価格が安い順</option>
+        <option value="price-desc">価格が高い順</option>
+        <option value="hot">人気順</option>
+        <option value="new">新着順</option>
+      </select>
+    </div>
+
+    <section id="grid" class="grid"></section>
+    <p id="empty" class="muted" hidden>該当する作品が見つかりませんでした。</p>
+  </main>
+
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/search.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>作品の閲覧 - japanft</title>
+  <meta name="description" content="購入済み作品の閲覧ページ">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/view.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/purchases">購入履歴</a>
+          <a class="btn" href="/access">閲覧URL発行</a>
+        </div>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="notice" class="alert" hidden></div>
+    <section id="viewer" class="viewer" hidden>
+      <h1 id="title" class="viewer-title"></h1>
+      <img id="image" class="media" alt="">
+      <div class="muted" id="meta"></div>
+    </section>
+  </main>
+
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/view.js"></script>
+</body>
+</html>
+
+

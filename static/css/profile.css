@@ -1,0 +1,389 @@
+/* profile.html固有のスタイル */
+/*ハンバーガーメニューここから*/
+body.menu-open {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*overflow: hidden;*/
+}
+html.menu-open,
+body.menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+
+.overlay {
+  position: fixed;
+  /*inset: 0;*/
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: .3s;
+  z-index: 90;
+}
+
+.overlay.active {
+  /*opacity: 1;*/
+  pointer-events: auto;
+}
+
+.nav-actions {
+  /*position: fixed;*/
+  z-index: 29;
+}
+
+.hamburger {
+  position: relative;
+  z-index: 110;
+}
+
+body.menu-open {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* ハンバーガーメニュー 終わり　*/
+
+main {
+  padding: 28px 0 80px;
+  display: grid;
+  gap: 18px;
+}
+
+.hero {
+  padding: 10px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.section {
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #0f1621;
+  padding: 14px;
+  width: 100%;
+  min-width: 0;
+}
+
+.section h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.row {
+  /*display: flex;*/
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input {
+  background: #0f1621;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-height: 40px;
+  outline: none;
+}
+
+.input-min-width-240 {
+  margin: 0 0 10px 0;
+  min-width: 240px;
+}
+
+.input-min-width-320 {
+  min-width: 320px;
+}
+
+.input-full {
+  width: 100%;
+  resize: vertical;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: linear-gradient(180deg, #101725, #0b121d);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: #0e1520;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background: rgba(11,15,20,.8);
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.content {
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.empty {
+  color: var(--muted);
+}
+
+.section-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+/* プロフィール画像セクション */
+.profile-image-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 16px;
+  background: #192233;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.profile-image-preview {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.profile-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image-placeholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #0e1520;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 24px;
+  color: #a9b4c3;
+}
+
+.profile-image-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.profile-image-actions label {
+  cursor: pointer;
+}
+.profile-image-actions.btn,
+.profile-image-actions.label{
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.profile-image-preview{
+  flex-shrink: 0;
+}
+
+.profile-image-actions{
+  min-width: 0;
+}
+
+/* ウォレットアドレスラッパー */
+.wallet-address-wrapper {
+  /*position: relative;
+  display: flex;*/
+  
+  gap: 8px;
+  min-width: 320px;
+  
+}
+
+.wallet-address-wrapper .input {
+  /*flex: 1;*/
+  /*padding-right: 100px;*/
+  margin: 0 0 10px 0;
+}
+
+/*.btn-copy {
+  /*position: absolute;*/
+  /*right: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(124, 92, 255, 0.1);
+  border: 1px solid rgba(124, 92, 255, 0.3);
+  color: var(--accent);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}*/
+
+/*.btn-copy:hover {
+  background: rgba(124, 92, 255, 0.2);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.btn-copy:active {
+  transform: translateY(0);
+}
+
+.btn-copy.copied {
+  background: rgba(0, 225, 160, 0.1);
+  border-color: rgba(0, 225, 160, 0.3);
+  color: var(--accent-2);
+}
+
+.btn-copy .copy-icon {
+  font-size: 14px;
+}
+
+.btn-copy .copy-text {
+  display: inline;
+}
+
+.btn-copy.copied .copy-icon {
+  display: none;
+}
+
+.btn-copy.copied .copy-text::before {
+  content: "✓ コピーしました";
+}*/
+
+@media (max-width: 768px) {
+  .wallet-address-wrapper {
+    min-width: 100%;
+    width: 100%;
+  }
+  
+  .wallet-address-wrapper .input {
+    padding-right: 90px;
+    margin: 10px 0 0 0;
+  }
+  
+  /*.btn-copy .copy-text {
+    display: none;
+  }
+  
+  .btn-copy {
+    padding: 8px;
+    min-width: 36px;
+    margin: 10px 0 0 0 ;
+  }
+  
+  .btn-copy.copied .copy-text::before {
+    content: "✓";
+  }
+  .btn-copy{
+    width: 100px;
+  }
+
+  .copy-text{
+    width: 50px;
+    font-size: 10px;
+  }*/
+}
+
+@media (max-width: 480px) {
+  .profile-image-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .profile-image-actions {
+    width: 100%;
+  }
+  
+  .profile-image-actions .btn {
+    flex: 1;
+  }
+  
+  .wallet-address-wrapper {
+    min-width: 100%;
+  }
+}
+

@@ -1,0 +1,937 @@
+/* CSS変数定義 */
+:root {
+  --bg: #0b0f14;
+  --fg: #e6edf3;
+  --muted: #8b98a5;
+  --card: #121822;
+  --accent: #7c5cff;
+  --accent-2: #00e1a0;
+  --border: #1f2a37;
+}
+
+/* リセットと基本設定 */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(ellipse 80% 50% at 10% -10%, rgba(124,92,255,.12), transparent),
+              radial-gradient(ellipse 70% 60% at 110% 10%, rgba(0,225,160,.10), transparent),
+              var(--bg);
+  background-attachment: fixed;
+  color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", Meiryo, "Noto Sans JP", Arial, "Apple Color Emoji","Segoe UI Emoji";
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ヘッダー */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(11,15,20,.9), rgba(11,15,20,.7));
+  backdrop-filter: blur(6px);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.brand-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #0f1621 url('../img/halcoin.png') center/cover no-repeat;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 0 2px rgba(255,255,255,.06) inset;
+}
+
+.nav-search {
+  max-width: 360px;
+}
+
+/* ボタン */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-width: 70px;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  background: #0f1722;
+  color: var(--fg);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .2s ease;
+  text-decoration: none;
+  white-space: nowrap; /* ナビ内の文字が2行にならないように固定 */
+}
+
+.btn:hover {
+  border-color: #2b3a49;
+  transform: translateY(-1px);
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 10px 30px rgba(124,92,255,.30);
+}
+
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 12px;
+  background: var(--accent-2);
+  color: #002219;
+  border-radius: 999px;
+  margin-left: 8px;
+}
+
+/* メインコンテンツ */
+main {
+  padding: 28px 0 64px;
+}
+
+.hero {
+  padding: 20px 0 8px;
+  display: grid;
+  gap: 10px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: .3px;
+}
+
+.hero h1.hero-small {
+  font-size: 26px;
+}
+
+.hero p {
+  margin: 2px 0 0;
+  color: var(--muted);
+}
+
+.campaign {
+  margin: 18px 0 10px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(124,92,255,.12), rgba(0,225,160,.10));
+  display: grid;
+  gap: 8px;
+}
+
+/* フォーム要素 */
+.input, .select {
+  background: #0f1621;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+  min-height: 40px;
+}
+
+.input::placeholder {
+  color: #6b7785;
+}
+
+.input-full {
+  width: 100%;
+}
+
+.buy-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: .2s ease;
+}
+
+.buy-btn:hover {
+  background: #6b4dff;
+  transform: translateY(-1px);
+}
+
+/* セクション */
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0 10px;
+}
+
+.hscroll {
+  display: flex;
+  gap: 12px;
+  overflow: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+}
+
+.hscroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.hscroll::-webkit-scrollbar-thumb {
+  background: #1f2a37;
+  border-radius: 999px;
+}
+
+/* カード */
+.hcard {
+  min-width: 260px;
+  max-width: 260px;
+  scroll-snap-align: start;
+  background: linear-gradient(180deg, #101725, #0b121d);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.hthumb {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: #0e1520;
+}
+
+.hthumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background: rgba(11,15,20,.8);
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.content {
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* フッター */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 18px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* トースト通知 */
+.toast {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  background: #0f1621;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 12px 14px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.4);
+  display: none;
+}
+
+/* モーダル */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.5);
+  padding: 20px;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 460px;
+  background: #0f1621;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-body {
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* インラインスタイル用のユーティリティクラス */
+.nav-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.nav-search-form {
+  flex: 1;
+  max-width: 360px;
+}
+
+.campaign-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.campaign-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+/* header変更箇所 */
+.nav-actions {
+  position: static;
+  height: auto;
+  flex-direction: row;
+  opacity: 1;
+  left: auto;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.nav-actions .btn {
+  width: auto;
+  justify-content: center;
+  animation: none; /* アニメーション無効 */
+}
+
+/* ハンバーガーメニュー - デスクトップでは非表示 */
+.hamburger {
+  display: none;
+}
+
+/* 画面幅1050px未満からハンバーガーメニューを表示開始 */
+@media (max-width: 1050px) {
+  .hamburger {
+    display: block;
+  }
+}
+
+/* PC用ナビゲーション - 横幅100% */
+@media (min-width: 769px) {
+  header .container {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* 幅1650px以下で徐々にメニューを間引き始める（テキストボックスが極端に小さくならないように） */
+@media (max-width: 1650px) and (min-width: 1121px) {
+  .nav-actions {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+  /* 優先度の低いメニューを非表示 */
+  .nav-actions a[href="/tutorial"],
+  .nav-actions a[href="/mint"],
+  .nav-actions a[href="/create"],
+  .nav-actions a[href="/chat"] {
+    display: none;
+  }
+}
+
+/* 幅1120px以下でさらに調整（PCレイアウト下限付近） */
+@media (max-width: 1120px) and (min-width: 769px) {
+  .nav-actions {
+    flex-wrap: nowrap; /* 折り返さない */
+    gap: 4px;
+  }
+  .nav-actions .btn {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  /* 検索フォームも少しコンパクトに */
+  .nav-search-form {
+    max-width: 260px;
+  }
+  /* 優先度の低いメニューを非表示にしていく */
+  .nav-actions a[href="/tutorial"],
+  .nav-actions a[href="/mint"],
+  .nav-actions a[href="/create"],
+  .nav-actions a[href="/chat"] {
+    display: none;
+  }
+}
+
+/* レスポンシブデザイン - タブレット・スマホ対応（1050px以下で適用） */
+@media (max-width: 1050px) {
+  /* ハンバーガーメニュー - モバイルでは表示 */
+  .hamburger {
+    display: block;
+  }
+  .container {
+    padding: 0 12px;
+  }
+  
+  .nav {
+    height: 56px;
+  }
+  
+  .nav-actions {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .nav-actions .btn {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+  
+  .nav-search-form {
+    max-width: 100%;
+    order: -1;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  .hero h1 {
+    font-size: 24px;
+  }
+  
+  .hero p {
+    font-size: 14px;
+  }
+  
+  main {
+    padding: 20px 0 40px;
+  }
+  
+  .btn {
+    padding: 12px 16px;
+    font-size: 14px;
+    min-height: 44px; /* タッチフレンドリーなサイズ */
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+  
+  .actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hscroll {
+    gap: 10px;
+  }
+  
+  .hcard {
+    min-width: 240px;
+    max-width: 240px;
+  }
+  
+  .toast {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    right: auto;
+    width: auto;
+  }
+  
+  .modal {
+    padding: 12px;
+  }
+  
+  .modal-card {
+    max-width: 100%;
+  }
+  
+  .campaign-actions {
+    flex-direction: column;
+  }
+  
+  .campaign-actions .btn {
+    width: 100%;
+  }
+  header .nav .nav-actions .btn{
+    padding: 10px 0;
+    margin-right: 0;
+  }
+  /* header変更箇所 */
+    /* ヘッダー */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(11,15,20,.9), rgba(11,15,20,.7));
+    backdrop-filter: blur(6px);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: relative;
+  }
+
+  /* ハンバーガーメニュー */
+  header .container .hamburger {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    position: fixed;
+    top: 5px;
+    left: 10px;
+    z-index: 30;
+  }
+  header .container .hamburger span {
+    width: 30px;
+    height: 3px;
+    background-color: #c6c6c6;
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    transition: all 0.4s;
+  }
+  header .container .hamburger span:nth-of-type(1) {
+    top: 16px;
+  }
+  header .container .hamburger span:nth-of-type(2) {
+    top: 25px;
+  }
+  header .container .hamburger span:nth-of-type(3) {
+    top: 34px;
+  }
+  header .hamburger.active span:nth-of-type(1) {
+    top: 24px;
+    transform: rotate(-45deg);
+  }
+  header .hamburger.active span:nth-of-type(2) {
+    opacity: 0;
+  }
+  header .hamburger.active span:nth-of-type(3) {
+    top: 24px;
+    transform: rotate(45deg);
+  }
+
+  /* ブランドロゴ */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    margin-left: 70px; /* ハンバーガー分のスペースを確保 */
+  }
+
+  .brand-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: #0f1621 url('../img/halcoin.png') center/cover no-repeat;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 0 2px rgba(255,255,255,.06) inset;
+  }
+
+  /* 検索フォーム */
+  .nav-search {
+    max-width: 360px;
+  }
+
+  /* ボタン */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    min-width: 70px;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    background: #0f1722;
+    color: var(--fg);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s ease;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    border-color: #2b3a49;
+    transform: translateY(-1px);
+  }
+
+  .btn.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 10px 30px rgba(124,92,255,.30);
+  }
+
+  .cart-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    font-size: 12px;
+    background: var(--accent-2);
+    color: #002219;
+    border-radius: 999px;
+    margin-left: 8px;
+  }
+  .nav-actions {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 240px;
+    height: 100vh;
+    background: #0f1722;
+    border-right: 1px solid var(--border);
+    padding: 80px 20px 20px;
+    flex-direction: column;
+    gap: 12px;
+    transition: left 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    z-index: 25;
+  }
+  .nav-actions.active {
+    left: 0;
+    opacity: 1;
+  }
+
+  /* ハンバーガーメニュー時は、PC向けで間引いていたメニューも元通り表示する */
+  .nav-actions a[href="/tutorial"],
+  .nav-actions a[href="/mint"],
+  .nav-actions a[href="/create"],
+  .nav-actions a[href="/chat"] {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  .hero h1 {
+    font-size: 22px;
+  }
+  
+  .hcard {
+    min-width: 200px;
+    max-width: 200px;
+  }
+  
+  .input, .select {
+    padding: 12px;
+    font-size: 16px; /* iOSでズームを防ぐ */
+  }
+  
+  .section-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* ハンバーガーメニュー内のナビを1列縦並びにする */
+  .nav-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-actions .btn {
+    padding: 10px 12px;
+    font-size: 14px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-actions .btn .cart-count {
+    font-size: 10px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+  }
+
+  .nav-actions.active {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    gap: 8px;
+  }
+
+.nav-actions {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 240px;
+  height: 100vh;
+  background: #0f1722;
+  border-right: 1px solid var(--border);
+  padding: 80px 20px 20px; /* ← 上空白を20px減らす（空白を消す） */
+  flex-direction: column;
+  gap: 12px;
+  transition: left 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  z-index: 25;
+  padding-top: 20px !important;
+}
+.nav-search-form {
+  max-height: 350px !important;
+  flex: 0 0 auto !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+.input .input-full{
+  padding-top: -200px;
+}
+
+.nav-action a.btn:last-child{
+  padding-bottom: 150px;
+}
+/* フォーム上の余白を削除 */
+.nav-search-form {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* 全体の下に余白を追加（test の下） */
+.nav-actions {
+  padding-bottom: 150px;
+}
+
+
+}
+
+/* 通知UI */
+.notification-wrapper {
+  position: relative;
+}
+
+.notification-btn {
+  position: relative;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  padding: 2px 6px;
+  font-size: 0.7em;
+  font-weight: bold;
+  min-width: 18px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 360px;
+  max-height: 500px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.notification-header strong {
+  font-size: 1.1em;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.9em;
+  padding: 4px 8px;
+  text-decoration: underline;
+}
+
+.btn-link:hover {
+  color: var(--accent-2);
+}
+
+.notification-list {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.notification-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.notification-item:hover {
+  background: rgba(124, 92, 255, 0.1);
+}
+
+.notification-item.unread {
+  background: rgba(124, 92, 255, 0.05);
+  border-left: 3px solid var(--accent);
+}
+
+.notification-item-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--fg);
+}
+
+.notification-item-message {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.notification-item-time {
+  font-size: 0.8em;
+  color: var(--muted);
+}
+
+.notification-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+}
+
+@media (max-width: 768px) {
+  .notification-dropdown {
+    width: calc(100vw - 32px);
+    right: -8px;
+  }
+}

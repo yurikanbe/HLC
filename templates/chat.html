@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>チャット - japanft</title>
+  <meta name="description" content="ユーザーとのチャット">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/chat.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/">ホーム</a>
+          <a class="btn" href="/purchases">購入履歴</a>
+          <a class="btn" href="/cart">🛒 カート <span class="cart-count" id="cartCount">0</span></a>
+          <a class="btn" href="/chat">💬 チャット</a>
+          <a class="btn" href="/mining">⚒️ マイニング</a>
+          <a class="btn" href="/transfer">💰 送金</a>
+          <a class="btn" href="/profile">👤 プロフィール</a>
+          <a class="btn" href="/login">ログイン</a>
+          <a class="btn" href="/signup">アカウント作成</a>
+        </div>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container chat-container">
+    <!-- ユーザー一覧サイドバー -->
+    <aside class="chat-sidebar">
+      <div class="chat-sidebar-header">
+        <h2>チャット</h2>
+        <button id="newChatBtn" class="btn-icon" title="新しいチャット">+</button>
+      </div>
+      
+      <!-- タブ切り替え -->
+      <div class="chat-tabs">
+        <button id="tabChats" class="chat-tab active">チャット</button>
+        <button id="tabFollowing" class="chat-tab">フォロー中</button>
+        <button id="tabSearch" class="chat-tab">検索</button>
+      </div>
+      
+      <!-- 検索バー（検索タブの時のみ表示） -->
+      <div id="searchBar" class="chat-search-bar" style="display: none;">
+        <input id="userSearchInput" class="input" type="text" placeholder="ユーザー名または#タグで検索..." autocomplete="off">
+        <div id="searchResults" class="search-results"></div>
+      </div>
+      
+      <!-- フォロー一覧（フォロー中タブの時のみ表示） -->
+      <div id="followingList" class="user-list" style="display: none;">
+        <!-- フォローしているユーザー一覧がここに動的に追加されます -->
+      </div>
+      
+      <!-- チャット一覧（チャットタブの時のみ表示） -->
+      <div id="userList" class="user-list">
+        <!-- ユーザー一覧がここに動的に追加されます -->
+      </div>
+    </aside>
+
+    <!-- チャットメインエリア -->
+    <div class="chat-main">
+      <div id="emptyState" class="empty-state">
+        <p>ユーザーを選択してチャットを開始してください</p>
+      </div>
+
+      <div id="chatThread" class="thread" style="display: none;">
+        <div class="thread-header">
+          <div>
+            <div class="thread-header-name" id="threadUserName">ユーザー</div>
+            <div class="muted" id="threadUserStatus">オンライン</div>
+          </div>
+        </div>
+        <div id="list" class="thread-body"></div>
+        <div id="typing" class="typing" aria-hidden="true">
+          <div class="avatar seller typing-avatar">U</div>
+          <div class="typing-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+          <span>入力中...</span>
+        </div>
+      </div>
+
+      <div id="chatInputArea" class="chat-input-area" style="display: none;">
+        <div class="chips" id="chips">
+          <div class="chip">この作品の制作背景を教えて</div>
+          <div class="chip">価格は交渉できますか？</div>
+          <div class="chip">高解像度のプレビューはありますか？</div>
+          <div class="chip">商用利用は可能ですか？</div>
+        </div>
+
+        <div class="input-bar">
+          <input id="text" class="text" type="text" placeholder="メッセージを入力..." autocomplete="off" />
+          <button id="send" class="send" type="button">送信</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>送金 - japanft</title>
+  <meta name="description" content="仮想通貨の送金">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/transfer.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/">ホーム</a>
+          <a class="btn" href="/purchases">購入履歴</a>
+          <a class="btn" href="/cart">🛒 カート <span class="cart-count" id="cartCount">0</span></a>
+          <a class="btn" href="/chat">💬 チャット</a>
+          <a class="btn" href="/mining">⚒️ マイニング</a>
+          <a class="btn" href="/profile">👤 プロフィール</a>
+        </div>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>送金</h1>
+      <p class="muted">ユーザー名または識別子で送金先を指定して仮想通貨を送金します。</p>
+    </section>
+
+    <section class="transfer-section">
+      <div class="card">
+        <div class="transfer-form">
+          <div class="form-group">
+            <label for="recipient">送金先ユーザー</label>
+            <div class="recipient-input-wrapper">
+              <input 
+                type="text" 
+                id="recipient" 
+                class="input" 
+                placeholder="ユーザー名 または #識別子" 
+                autocomplete="off"
+              >
+              <div id="userSearchResults" class="user-search-results"></div>
+            </div>
+            <div class="input-hint">ユーザー名（例: たろう）または識別子（例: #9978）を入力</div>
+            <div id="selectedUser" class="selected-user" style="display: none;">
+              <div class="selected-user-info">
+                <span class="selected-username" id="selectedUsername"></span>
+                <span class="selected-tag" id="selectedTag"></span>
+              </div>
+              <button type="button" id="clearUser" class="btn-clear">×</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="amount">送金額</label>
+            <div class="amount-input-wrapper">
+              <input 
+                type="number" 
+                id="amount" 
+                class="input" 
+                placeholder="0.00" 
+                step="0.01" 
+                min="0"
+                autocomplete="off"
+              >
+              <span class="currency">HLC</span>
+            </div>
+            <div class="input-hint">送金する金額を入力してください</div>
+          </div>
+
+          <div class="balance-info">
+            <div class="balance-label">残高</div>
+            <div class="balance-value">
+              <span>HLC</span>
+              <span id="balance">0.00</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="memo">メモ（任意）</label>
+            <textarea 
+              id="memo" 
+              class="input" 
+              rows="3" 
+              placeholder="送金のメモを入力..."
+            ></textarea>
+          </div>
+
+          <button id="sendBtn" class="btn primary" type="button">送金する</button>
+          
+          <div id="message" class="message"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>送金履歴</h3>
+        <div id="history" class="history-list">
+          <div class="muted">送金履歴はありません</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/transfer.js"></script>
+</body>
+</html>
+

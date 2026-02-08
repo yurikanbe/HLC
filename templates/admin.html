@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>管理者ページ - japanft</title>
+  <meta name="description" content="管理者専用ページ">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/">ホーム</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>管理者ページ</h1>
+      <p class="muted">管理者専用の機能を利用できます。</p>
+    </section>
+
+    <section id="loginSection" class="card">
+      <div class="form">
+        <h2>管理者ログイン</h2>
+        <input id="username" class="input" placeholder="ユーザー名">
+        <input id="password" class="input" placeholder="パスワード" type="password">
+        <button id="login" class="btn primary" type="button">ログイン</button>
+        <div id="msg" class="muted"></div>
+      </div>
+    </section>
+
+    <section id="adminSection" class="card" style="display: none;">
+      <h2>管理者ダッシュボード</h2>
+      <div id="adminContent">
+        <p>ログイン中: <strong id="adminUsername"></strong></p>
+        <div style="margin: 20px 0;">
+          <h3 style="margin-bottom: 12px;">トランザクション一覧</h3>
+          <p class="muted" style="margin-bottom: 12px;">これまでの全取引・送金履歴を表示します。</p>
+          <button id="loadTransactions" class="btn primary" type="button">トランザクションを読み込む</button>
+          <div id="transactionsLoading" class="muted" style="margin-top: 12px; display: none;">読み込み中...</div>
+          <div id="transactionsError" style="margin-top: 12px; color: var(--error, #c00); display: none;"></div>
+          <div id="transactionsContainer" style="margin-top: 16px; display: none;">
+            <div id="transactionsSummary" class="muted" style="margin-bottom: 12px;"></div>
+            <div style="overflow-x: auto;">
+              <table id="transactionsTable" style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--border); text-align: left;">
+                    <th style="padding: 8px 12px;">ID</th>
+                    <th style="padding: 8px 12px;">種別</th>
+                    <th style="padding: 8px 12px;">売り手</th>
+                    <th style="padding: 8px 12px;">買い手</th>
+                    <th style="padding: 8px 12px;">金額</th>
+                    <th style="padding: 8px 12px;">日時</th>
+                  </tr>
+                </thead>
+                <tbody id="transactionsBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 20px;">
+        <button id="logout" class="btn" type="button">ログアウト</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/js/admin.js"></script>
+</body>
+</html>
+

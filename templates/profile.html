@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>プロフィール - japanft</title>
+  <meta name="description" content="ユーザープロフィールと出品一覧">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/profile.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/">ホーム</a>
+          <a class="btn" href="/purchases">購入履歴</a>
+          <a class="btn" href="/cart">🛒 カート <span class="cart-count" id="cartCount">0</span></a>
+          <a class="btn" href="/chat">💬 チャット</a>
+          <a class="btn" href="/mining">⚒️ マイニング</a>
+          <a class="btn" href="/transfer">💰 送金</a>
+          <a class="btn" href="/profile">👤 プロフィール</a>
+          <a class="btn" href="/tutorial">📖 使い方</a>
+          <a class="btn" href="/login">ログイン</a>
+          <a class="btn" href="/signup">アカウント作成</a>
+        </div>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+ <div class="overlay"></div>
+  <main class="container">
+    <section class="hero">
+      <h1>プロフィール</h1>
+      <p class="muted">あなたの基本情報の編集と出品一覧を表示します。</p>
+    </section>
+
+    <section class="section">
+      <h2>基本情報</h2>
+      
+      <!-- プロフィール画像アップロード -->
+      <div class="profile-image-section">
+        <div class="profile-image-preview">
+          <img id="profileImagePreview" src="" alt="プロフィール画像" style="display: none;">
+          <div id="profileImagePlaceholder" class="profile-image-placeholder">
+            <span id="profileImageInitial">U</span>
+          </div>
+        </div>
+        <div class="profile-image-actions">
+          <label for="profileImageInput" class="btn">アイコンを選択</label>
+          <input type="file" id="profileImageInput" accept="image/*" style="display: none;">
+          <button id="removeProfileImage" class="btn" type="button" style="display: none;">アイコンを削除</button>
+        </div>
+      </div>
+      
+      <div class="row">
+        <input id="displayName" class="input input-min-width-240" placeholder="表示名">
+        <div class="wallet-address-wrapper">
+          <input id="walletAddress" class="input input-min-width-320" placeholder="ウォレットアドレス" readonly>
+          <!-- <button id="copyWalletBtn" class="btn-copy" type="button" title="アドレスをコピー"> -->
+            <!-- <span class="copy-icon">📋</span> -->
+            <!-- <span class="copy-text">コピー</span> -->
+          </button>
+        </div>
+        <button id="saveProfile" class="btn primary" type="button">保存</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>自己紹介</h2>
+      <textarea id="bio" class="input input-full" rows="4" placeholder="自己紹介（任意）"></textarea>
+    </section>
+
+    <section class="section">
+      <h2>出品一覧</h2>
+      <div class="section-actions">
+        <a class="btn primary" href="/create">🎨 NFTを出品する</a>
+        <a class="btn" href="/purchases">購入履歴へ</a>
+        <a class="btn" href="/access">購入商品の閲覧URL発行</a>
+      </div>
+      <div id="listings" class="grid"></div>
+      <p id="emptyMsg" class="empty" hidden>まだ出品がありません。</p>
+    </section>
+  </main>
+
+  <script src="/static/js/auth.js"></script>
+  <script>
+    // ページ読み込み前に即座にログインチェック
+    (function() {
+      const token = localStorage.getItem("japanft_token");
+      if (!token) {
+        console.log("No token found, redirecting to login");
+        window.location.replace("/login");
+        return;
+      }
+    })();
+  </script>
+  <!-- ハンバーガーメニュー用のjQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="/static/js/profile.js"></script>
+</body>
+</html>
+
+

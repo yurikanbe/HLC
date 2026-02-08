@@ -1,0 +1,81 @@
+/* checkout.html専用のスタイル */
+
+.hero {
+  padding: 20px 0 8px;
+  display: grid;
+  gap: 6px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: .3px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: linear-gradient(180deg, #101725, #0b121d);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.list {
+  padding: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 96px 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.row img {
+  width: 96px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.summary {
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.summary-total {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.row2 {
+  display: grid;
+  gap: 8px;
+}
+
+.row-title {
+  font-weight: 600;
+}
+
+.row-price {
+  font-weight: 700;
+}
+
+
+
+
+

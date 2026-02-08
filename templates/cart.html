@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>カート - japanft</title>
+  <meta name="description" content="カートの内容を確認">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/cart.css">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b0f14">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="japanft">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Crect rx='24' width='128' height='128' fill='%237c5cff'/%3E%3C/svg%3E">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/">ホーム</a>
+          <a class="btn" href="/purchases">購入履歴</a>
+          <a class="btn" href="/cart">🛒 カート <span class="cart-count" id="cartCount">0</span></a>
+          <a class="btn" href="/chat">💬 チャット</a>
+          <a class="btn" href="/mining">⚒️ マイニング</a>
+          <a class="btn" href="/transfer">💰 送金</a>
+          <a class="btn" href="/profile">👤 プロフィール</a>
+          <a class="btn" href="/login">ログイン</a>
+          <a class="btn" href="/signup">アカウント作成</a>
+        </div>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>カート</h1>
+      <p>選択したNFTの確認と購入</p>
+    </section>
+
+    <section id="grid" class="grid"></section>
+
+    <div class="summary" id="summary" hidden>
+      <div>
+        <div><strong id="itemCount">0</strong> 件</div>
+        <div class="muted">合計 <strong><span>HLC</span><span id="totalEth">0.00</span></strong></div>
+      </div>
+      <div class="summary-actions">
+        <a id="goCheckout" class="btn primary" href="/checkout">決済ページへ</a>
+        <button id="clearCart" class="btn danger" type="button">カートを空にする</button>
+      </div>
+    </div>
+
+    <p class="empty" id="emptyMsg" hidden>カートは空です。<a class="btn empty-actions" href="/">作品を探す</a></p>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/cart.js"></script>
+</body>
+</html>
+
+

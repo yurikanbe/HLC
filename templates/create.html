@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NFT出品 - japanft</title>
+  <meta name="description" content="NFT作品を出品する">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/product.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/">ホーム</a>
+          <a class="btn" href="/purchases">購入履歴</a>
+          <a class="btn" href="/cart">🛒 カート <span class="cart-count" id="cartCount">0</span></a>
+          <a class="btn" href="/create">🎨 出品</a>
+          <a class="btn" href="/mint">🔗 ミント管理</a>
+          <a class="btn" href="/transfer">💰 送金</a>
+          <a class="btn" href="/profile">👤 プロフィール</a>
+          <a class="btn" href="/tutorial">📖 使い方</a>
+        </div>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  
+  <div class="overlay"></div>
+
+  <main class="container">
+    <section class="hero">
+      <h1>NFT出品</h1>
+      <p class="muted">新しいNFT作品を出品して販売しましょう。</p>
+    </section>
+
+    <section class="card">
+      <div class="content">
+        <form id="createForm">
+          <div class="form-group">
+            <label for="name" class="label">作品名 <span class="required">*</span></label>
+            <input id="name" class="input input-full" type="text" placeholder="例: Aurora #001" required>
+          </div>
+
+          <div class="form-group">
+            <label for="description" class="label">説明文</label>
+            <textarea id="description" class="input input-full" rows="4" placeholder="作品の説明を入力してください"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="label">メディアファイル <span class="required">*</span></label>
+            <div style="margin-bottom: 1rem;">
+              <input id="fileInput" class="input input-full" type="file" accept="image/*,audio/mpeg,audio/mp3" style="padding: 8px;">
+              <div class="muted" style="margin-top: 0.5rem; font-size: 0.9em;">
+                対応形式: 画像（JPEG, PNG, GIF, WebP）または音楽（MP3）、最大100MB
+              </div>
+            </div>
+            <div style="margin-top: 1rem;">
+              <label class="label">または、URLを入力</label>
+              <input id="imageUrl" class="input input-full" type="url" placeholder="https://example.com/image.jpg または https://example.com/music.mp3">
+            </div>
+            <div id="mediaPreview" class="media-preview" style="margin-top: 1rem; display: none;">
+              <div id="previewContainer"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="category" class="label">カテゴリ</label>
+            <select id="category" class="input input-full">
+              <option value="">選択してください</option>
+              <option value="Art">アート</option>
+              <option value="Pixel">ピクセルアート</option>
+              <option value="City">都市</option>
+              <option value="Geometric">幾何学</option>
+              <option value="Abstract">抽象</option>
+              <option value="Digital">デジタル</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="price" class="label">価格 (HLC) <span class="required">*</span></label>
+            <input id="price" class="input input-full" type="number" step="0.00000001" min="0" placeholder="0.1" required>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn primary" id="submitBtn">出品する</button>
+            <a href="/profile" class="btn">キャンセル</a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="/static/js/auth.js"></script>
+  <script>
+    // ページ読み込み前に即座にログインチェック
+    (function() {
+      const token = localStorage.getItem("japanft_token");
+      if (!token) {
+        console.log("No token found, redirecting to login");
+        window.location.replace("/login");
+        return;
+      }
+    })();
+  </script>
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="/static/js/create.js"></script>
+</body>
+</html>
+

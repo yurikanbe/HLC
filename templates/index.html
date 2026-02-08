@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>japanft - サンプル</title>
+  <meta name="description" content="シンプルなNFT販売所のサンプルページ">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <form id="navSearch" class="nav-search-form" action="/search" method="get">
+            <input name="q" class="input input-full" type="search" placeholder="作品名を検索...（Enterで検索）">
+          </form>
+          <a class="btn" href="/purchases">購入履歴</a>
+          <a class="btn" href="/cart">🛒 カート <span class="cart-count" id="cartCount">0</span></a>
+          <a class="btn" href="/chat">💬 チャット</a>
+          <a class="btn" href="/mining">⚒️ マイニング</a>
+          <a class="btn" href="/create">🎨 出品</a>
+          <a class="btn" href="/mint">🔗 ミント管理</a>
+          <a class="btn" href="/profile">👤 プロフィール</a>
+          <a class="btn" href="/tutorial">📖 使い方</a>
+          <a class="btn" href="/login">ログイン</a>
+          <a class="btn" href="/signup">アカウント作成</a>
+          <a class="btn" href="/purchases">📦 所持NFT</a>
+          <a class="btn" href="/transfer">💰 送金</a>
+          <div class="notification-wrapper">
+            <button id="notificationBtn" class="btn notification-btn" type="button" aria-label="通知">
+              🔔
+              <span id="notificationBadge" class="notification-badge" style="display: none;">0</span>
+            </button>
+            <div id="notificationDropdown" class="notification-dropdown" style="display: none;">
+              <div class="notification-header">
+                <strong>通知</strong>
+                <button id="markAllReadBtn" class="btn-link" type="button">すべて既読</button>
+              </div>
+              <div id="notificationList" class="notification-list">
+                <div class="notification-empty">通知はありません</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>春のキャンペーン</h1>
+      <div class="campaign">
+        <div class="campaign-title">期間限定セール & フィーチャード作品</div>
+        <div class="muted">人気クリエイターの新作をチェック。今だけ特別価格。</div>
+        <div class="campaign-actions">
+          <a class="btn primary" href="/search?q=featured">特集を見る</a>
+          <a class="btn" href="/search?q=new">新着を探す</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <h2>人気のコレクション</h2>
+      <a class="btn" href="/search?sort=hot">もっと見る</a>
+    </div>
+    <section id="popular" class="hscroll"></section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>© 2025 japanft サンプル</div>
+        <div style="display: flex; gap: 1rem;">
+          <a href="/terms" style="color: var(--muted); text-decoration: none;">利用規約</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <strong>購入の確認</strong>
+        <button class="close-btn" id="modalClose" aria-label="閉じる">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="modalSummary" class="muted"></div>
+        <button id="confirmBuy" class="buy-btn" type="button">購入する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/notifications.js"></script>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
+
+

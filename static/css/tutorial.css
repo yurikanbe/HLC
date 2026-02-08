@@ -1,0 +1,289 @@
+/* チュートリアルページ専用スタイル */
+
+.tutorial-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* ナビゲーション */
+.tutorial-nav {
+  display: flex;
+  gap: 8px;
+  margin: 24px 0;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.tutorial-nav::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tutorial-nav::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.nav-link:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* セクション */
+.tutorial-section {
+  margin-bottom: 48px;
+  scroll-margin-top: 100px;
+}
+
+.tutorial-section h2 {
+  font-size: 28px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+  color: var(--fg);
+}
+
+/* ステップカード */
+.step-card {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: linear-gradient(180deg, #101725, #0b121d);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.step-card:hover {
+  border-color: #2b3a49;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-content h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--fg);
+}
+
+.step-content p {
+  margin-bottom: 12px;
+  line-height: 1.7;
+  color: var(--fg);
+}
+
+.step-content ul,
+.step-content ol {
+  margin-left: 24px;
+  margin-bottom: 12px;
+  line-height: 1.8;
+}
+
+.step-content li {
+  margin-bottom: 8px;
+  color: var(--fg);
+}
+
+.step-content li strong {
+  color: var(--accent-2);
+}
+
+/* ヒント・警告ボックス */
+.tip-box,
+.warning-box {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  border-left: 4px solid;
+}
+
+.tip-box {
+  background: rgba(0, 225, 160, 0.1);
+  border-left-color: var(--accent-2);
+}
+
+.tip-box strong {
+  color: var(--accent-2);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.warning-box {
+  background: rgba(255, 100, 100, 0.1);
+  border-left-color: #ff6464;
+}
+
+.warning-box strong {
+  color: #ff6464;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.tip-box p,
+.warning-box p {
+  margin: 0;
+  color: var(--fg);
+}
+
+/* FAQ */
+.faq-item {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: linear-gradient(180deg, #101725, #0b121d);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.faq-item:hover {
+  border-color: #2b3a49;
+}
+
+.faq-question {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: var(--accent);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.faq-question::before {
+  content: "Q.";
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.faq-answer {
+  margin-left: 24px;
+  line-height: 1.7;
+  color: var(--fg);
+}
+
+.faq-answer::before {
+  content: "A.";
+  font-weight: 700;
+  color: var(--accent-2);
+  margin-right: 8px;
+}
+
+/* アクティブなナビゲーションリンク */
+.nav-actions .btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .tutorial-content {
+    padding: 16px 0;
+  }
+
+  .tutorial-nav {
+    margin: 16px 0;
+    padding: 8px;
+  }
+
+  .nav-link {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .tutorial-section {
+    margin-bottom: 32px;
+  }
+
+  .tutorial-section h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .step-card {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .step-number {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .step-content h3 {
+    font-size: 18px;
+  }
+
+  .faq-item {
+    padding: 16px;
+  }
+
+  .faq-question {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tutorial-section h2 {
+    font-size: 20px;
+  }
+
+  .step-content h3 {
+    font-size: 16px;
+  }
+
+  .step-content ul,
+  .step-content ol {
+    margin-left: 20px;
+  }
+
+  .faq-answer {
+    margin-left: 0;
+  }
+}

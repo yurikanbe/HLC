@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>エラー - japanft</title>
+  <meta name="description" content="エラーページ">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    .error-container {
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .error-code {
+      font-size: 6rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .error-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .error-message {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .error-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .error-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/">ホーム</a>
+          <a class="btn" href="/profile">👤 プロフィール</a>
+        </div>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="error-container">
+      <div class="error-icon" id="errorIcon">⚠️</div>
+      <div class="error-code" id="errorCode">500</div>
+      <h1 class="error-title" id="errorTitle">エラーが発生しました</h1>
+      <p class="error-message" id="errorMessage">
+        申し訳ございません。予期しないエラーが発生しました。<br>
+        しばらく時間をおいてから再度お試しください。
+      </p>
+      <div class="error-actions">
+        <a href="/" class="btn primary">ホームに戻る</a>
+        <button onclick="history.back()" class="btn">前のページに戻る</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="/static/js/auth.js"></script>
+  <script>
+    // URLパラメータからエラー情報を取得
+    const urlParams = new URLSearchParams(window.location.search);
+    const errorCode = urlParams.get('code') || '500';
+    const errorMessage = urlParams.get('message') || '予期しないエラーが発生しました。';
+    
+    // エラーコードに応じて表示を変更
+    const errorCodeEl = document.getElementById('errorCode');
+    const errorTitleEl = document.getElementById('errorTitle');
+    const errorMessageEl = document.getElementById('errorMessage');
+    const errorIconEl = document.getElementById('errorIcon');
+    
+    if (errorCodeEl) errorCodeEl.textContent = errorCode;
+    
+    const errorConfigs = {
+      '404': {
+        icon: '🔍',
+        title: 'ページが見つかりません',
+        message: 'お探しのページは存在しないか、移動または削除された可能性があります。'
+      },
+      '403': {
+        icon: '🚫',
+        title: 'アクセスが拒否されました',
+        message: 'このページにアクセスする権限がありません。'
+      },
+      '401': {
+        icon: '🔐',
+        title: '認証が必要です',
+        message: 'このページを表示するにはログインが必要です。'
+      },
+      '500': {
+        icon: '⚠️',
+        title: 'サーバーエラー',
+        message: 'サーバーでエラーが発生しました。しばらく時間をおいてから再度お試しください。'
+      },
+      '503': {
+        icon: '🔧',
+        title: 'サービス一時停止中',
+        message: 'サービスが一時的に利用できません。しばらく時間をおいてから再度お試しください。'
+      }
+    };
+    
+    const config = errorConfigs[errorCode] || errorConfigs['500'];
+    
+    if (errorIconEl) errorIconEl.textContent = config.icon;
+    if (errorTitleEl) errorTitleEl.textContent = config.title;
+    if (errorMessageEl) {
+      errorMessageEl.innerHTML = errorMessage || config.message;
+    }
+    
+    // ページタイトルを更新
+    document.title = `${config.title} - japanft`;
+  </script>
+</body>
+</html>
+

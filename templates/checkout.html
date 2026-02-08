@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>決済 - japanft</title>
+  <meta name="description" content="カートの確認と決済">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/checkout.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/">ホーム</a>
+          <a class="btn" href="/purchases">購入履歴</a>
+          <a class="btn" href="/cart">🛒 カート <span class="cart-count" id="cartCount">0</span></a>
+          <a class="btn" href="/chat">💬 チャット</a>
+          <a class="btn" href="/mining">⚒️ マイニング</a>
+          <a class="btn" href="/transfer">💰 送金</a>
+          <a class="btn" href="/profile">👤 プロフィール</a>
+        </div>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>決済</h1>
+      <p class="muted">カートの内容を確認して決済します。</p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <div id="list" class="list"></div>
+      </div>
+      <div class="card">
+        <div class="summary">
+          <div>
+            <div class="muted">合計</div>
+            <div class="summary-total"><span>HLC</span><span id="total">0.00</span></div>
+          </div>
+          <div class="row2">
+            <input id="email" class="input" placeholder="メール（領収書送付・任意）">
+          </div>
+          <button id="pay" class="btn primary" type="button">決済する</button>
+          <div id="msg" class="muted"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/checkout.js"></script>
+</body>
+</html>
+
+

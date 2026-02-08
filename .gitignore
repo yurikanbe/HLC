@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Data files
+blockchain_data.pkl
+nft_marketplace.db
+*.pkl
+*.db
+
+# Environment variables
+.env
+env.example.txt
+

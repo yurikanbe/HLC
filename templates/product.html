@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>商品詳細 - japanft</title>
+  <meta name="description" content="NFT商品の詳細ページ">
+  <link rel="icon" href="/static/img/halcoin.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/product.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge"></div>
+          <a href="/">japanft</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/">ホーム</a>
+          <a class="btn" href="/purchases">購入履歴</a>
+          <a class="btn" href="/cart">🛒 カート <span class="cart-count" id="cartCount">0</span></a>
+          <a class="btn" href="/transfer">💰 送金</a>
+          <a class="btn" href="/profile">👤 プロフィール</a>
+        </div>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="grid">
+      <div class="media"><img id="image" src="" alt=""></div>
+      <div class="card">
+        <div class="content">
+          <div class="title" id="title"></div>
+          <div class="meta">
+            <div class="muted">
+              <button id="likeBtn" class="like-btn" type="button" style="background: none; border: none; cursor: pointer; font-size: 1.2em; padding: 0; margin-right: 0.5em;">
+                <span id="likeIcon">🤍</span>
+              </button>
+              <span id="likes">0</span>
+            </div>
+            <div class="price"><span>HLC</span><span id="price">0.00</span></div>
+          </div>
+          <div class="muted" id="desc">この作品はサンプルの説明文です。解像度や制作意図などを記載できます。</div>
+          
+          <!-- 出品者情報セクション -->
+          <div id="sellerSection" class="seller-section">
+            <a id="sellerLink" href="#" class="seller-info-link">
+              <div class="seller-info">
+                <div class="seller-avatar" id="sellerAvatar">
+                  <!-- アイコン画像がここに動的に追加されます -->
+                </div>
+                <div class="seller-details">
+                  <div class="seller-name" id="sellerName">出品者</div>
+                  <div class="seller-tag" id="sellerTag"></div>
+                </div>
+              </div>
+            </a>
+          </div>
+          
+          <!-- 保有者情報セクション -->
+          <div id="ownerSection" class="seller-section">
+            <a id="ownerLink" href="#" class="seller-info-link">
+              <div class="seller-info">
+                <div class="seller-avatar" id="ownerAvatar">
+                  <!-- アイコン画像がここに動的に追加されます -->
+                </div>
+                <div class="seller-details">
+                  <div class="seller-name" id="ownerName">所有者：保有者</div>
+                  <div class="seller-tag" id="ownerTag"></div>
+                </div>
+              </div>
+            </a>
+          </div>
+          
+          <!-- 取引履歴セクション -->
+          <div id="transactionHistorySection" class="transaction-history-section" style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border);">
+            <h3 style="font-size: 18px; margin-bottom: 16px; color: var(--fg);">取引履歴</h3>
+            <div id="transactionHistory" class="transaction-history-list">
+              <div class="muted">読み込み中...</div>
+            </div>
+          </div>
+          
+          <div class="actions">
+            <button class="btn" id="addCart" type="button">カートに追加</button>
+            <a class="btn primary" id="goCheckout" href="/checkout">決済へ</a>
+            <a class="btn" id="goMint" href="/mint" style="display: none;">🔗 ミント管理</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/product.js"></script>
+</body>
+</html>
+
+
