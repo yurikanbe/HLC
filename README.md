@@ -60,6 +60,4 @@ python main.py
 uvicorn main:app --reload
 ```
 
-## ライセンス
 
-このプロジェクトのライセンス情報については、メインのリポジトリを参照してください。
