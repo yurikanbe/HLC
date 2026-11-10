@@ -1002,12 +1002,6 @@ async def get_my_nfts(
         results = []
         for nft in nfts:
             # アクティブな出品情報を取得
-            listing = db.query(Listing).filter(
-                Listing.nft_id == nft.nft_id,
-                Listing.status == "active"
-            ).first()
-            
-            # アクティブな出品情報を取得
             active_listing = db.query(Listing).filter(
                 Listing.nft_id == nft.nft_id,
                 Listing.status == "active"
