@@ -369,49 +369,6 @@
     }
   });
 
-  // マイニング報酬をサーバーに送信
-  async function addMiningReward(walletAddress, rewardAmount) {
-    const token = getAuthToken();
-    if (!token) {
-      appendLog("警告: ログインしていないため、報酬はローカルのみ記録されます");
-      return;
-    }
-    
-    if (!walletAddress || !walletAddress.startsWith("0x")) {
-      appendLog("警告: 有効なウォレットアドレスが設定されていません");
-      return;
-    }
-    
-    try {
-      const response = await fetch("/api/mining/reward", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          wallet_address: walletAddress,
-          reward_amount: rewardAmount
-        })
-      });
-      
-      if (!response.ok) {
-        const error = await response.json().catch(() => ({ detail: "エラーが発生しました" }));
-        appendLog(`報酬の記録に失敗: ${error.detail || "エラーが発生しました"}`);
-        return;
-      }
-      
-      const result = await response.json();
-        appendLog(`報酬が記録されました: 残高 ${fmt(result.new_balance)}HLC`);
-      
-      // 残高を更新表示
-      updateBalanceDisplay();
-    } catch (error) {
-      console.error("報酬送信エラー:", error);
-      appendLog("報酬の記録中にエラーが発生しました");
-    }
-  }
-  
   // 残高を取得して表示
   async function updateBalanceDisplay() {
     const token = getAuthToken();

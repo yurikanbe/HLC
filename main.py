@@ -1946,59 +1946,6 @@ async def get_wallet_balance(wallet_address: str, db: Session = Depends(get_db))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"エラーが発生しました: {str(e)}")
 
-class MiningRewardRequest(BaseModel):
-    wallet_address: str
-    reward_amount: float
-
-@app.post("/api/mining/reward")
-async def add_mining_reward(
-    request: MiningRewardRequest,
-    current_user: User = Depends(get_current_user),
-    db: Session = Depends(get_db)
-):
-    """マイニング報酬を追加（認証必須）"""
-    try:
-        # ウォレットアドレスのバリデーション
-        wallet_valid, wallet_msg = validate_wallet_address(request.wallet_address)
-        if not wallet_valid:
-            raise HTTPException(status_code=400, detail=f"無効なウォレットアドレスです: {wallet_msg}")
-        
-        # 現在のユーザーのウォレットアドレスと一致するか確認
-        if current_user.wallet_address != request.wallet_address:
-            raise HTTPException(
-                status_code=403,
-                detail="自分のウォレットアドレスのみ報酬を追加できます"
-            )
-        
-        # 報酬額のバリデーション
-        if request.reward_amount <= 0:
-            raise HTTPException(status_code=400, detail="報酬額は0より大きい値である必要があります")
-        
-        if request.reward_amount > 1000:  # 異常値チェック
-            raise HTTPException(status_code=400, detail="報酬額が異常に高いです")
-        
-        # 残高を更新
-        if current_user.balance is None:
-            current_user.balance = 0.0
-        current_user.balance = float(current_user.balance) + request.reward_amount
-        current_user.updated_at = datetime.utcnow()
-        
-        db.commit()
-        db.refresh(current_user)
-        
-        return {
-            "wallet_address": current_user.wallet_address,
-            "reward_amount": request.reward_amount,
-            "new_balance": float(current_user.balance),
-            "message": "マイニング報酬が追加されました"
-        }
-    except HTTPException:
-        db.rollback()
-        raise
-    except Exception as e:
-        db.rollback()
-        raise HTTPException(status_code=500, detail=f"エラーが発生しました: {str(e)}")
-
 @app.get("/api/wallet/balance")
 async def get_my_balance(
     current_user: User = Depends(get_current_user),
