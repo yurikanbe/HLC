@@ -2613,7 +2613,6 @@ async def create_purchase(
             
             # 購入者の残高から価格を減算（DBの残高から減算）
             current_user.balance = float(current_user.balance) - purchase_price
-            buyer_public_key = current_user.wallet_address.replace("0x", "").ljust(128, "0")[:128]
             
             # 出品者の残高に価格を加算（DBの残高を増やす）
             if seller.balance is None:
