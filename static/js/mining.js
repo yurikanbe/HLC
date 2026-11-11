@@ -19,8 +19,6 @@
   // ユーザーのウォレットアドレスを保持する変数
   let userWalletAddress = null;
 
-  const REWARD_PER_BLOCK = 25; // HLC（表示用）
-
   function getCart() {
     try {
       return JSON.parse(localStorage.getItem("nft_cart") || "[]");
@@ -119,33 +117,11 @@
     }
   }
 
-  // 簡易PoW: 32bit値の上位ビットが0なら採掘成功とみなす（難易度固定：低）
-  const FIXED_DIFFICULTY = 1; // 固定難易度（低）
   let mining = false;
   let attempts = 0;
   let lastRateAt = performance.now();
   let lastAttempts = 0;
   let seed = Date.now() >>> 0;
-
-  function xorshift() {
-    // xorshift32
-    seed ^= seed << 13;
-    seed >>>= 0;
-    seed ^= seed >> 17;
-    seed >>>= 0;
-    seed ^= seed << 5;
-    seed >>>= 0;
-    return seed >>> 0;
-  }
-
-  function toHex32(v) {
-    return v.toString(16).padStart(8, '0');
-  }
-
-  function targetFromDifficulty(d) {
-    const bits = Math.min(28, d * 4);
-    return 0xffffffff >>> bits;
-  }
 
   function updateStatsUI(state) {
     rateEl.textContent = `${Math.max(0, state.lastRateHps || 0).toFixed(0)} H/s`;
