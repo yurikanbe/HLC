@@ -1,31 +1,27 @@
 from fastapi import FastAPI, HTTPException, Request, Depends, UploadFile, File, Query
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 from fastapi.exceptions import RequestValidationError
 import uvicorn
-from ecdsa import SigningKey, VerifyingKey, SECP256k1
-import binascii
 import json
 import blockchain
-from typing import List, Dict, Any
+from typing import List
 from pathlib import Path
 from sqlalchemy.orm import Session
 import os
 import uuid
-import shutil
 from database import init_db, get_db, seed_initial_data, NFT as NFTModel, Listing, User, ChatRoom, ChatMessage, Transaction as TransactionModel, Favorite, Follow, Notification
 from auth import (
-    get_password_hash, verify_password, generate_login_code, generate_wallet_address,
+    get_password_hash, verify_password, generate_wallet_address,
     create_access_token, decode_access_token, validate_username, validate_password,
     validate_wallet_address, verify_admin_credentials, create_admin_token, verify_admin_token,
     generate_user_tag, generate_otp, send_otp_email
 )
 from datetime import datetime, timedelta
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from fastapi import Depends
 from fastapi import status
 
 class Transaction(BaseModel):
