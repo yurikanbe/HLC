@@ -2,7 +2,7 @@
 データベース接続とモデル定義
 開発: SQLite / 本番: 環境変数 DATABASE_URL でクラウドDB（PostgreSQL/MySQL等）を指定可能
 """
-from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, DECIMAL, Boolean, ForeignKey, UniqueConstraint, Index
+from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, DECIMAL, Boolean, ForeignKey, UniqueConstraint
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from datetime import datetime
@@ -19,7 +19,7 @@ engine = create_engine(
     DATABASE_URL,
     connect_args=_connect_args,
     pool_pre_ping=True,   # 死んだ接続を検知して再接続（本番向け）
-    pool_size=5 if not _is_sqlite else 5,
+    pool_size=5,
     max_overflow=10 if not _is_sqlite else 0,
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -129,16 +129,6 @@ class Favorite(Base):
     __table_args__ = (
         UniqueConstraint('user_id', 'nft_id', name='uq_user_nft'),
     )
-
-
-class Category(Base):
-    __tablename__ = "categories"
-    
-    category_id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(50), nullable=False, unique=True)
-    description = Column(Text, nullable=True)
-    sort_order = Column(Integer, nullable=False, default=0, index=True)
-    is_active = Column(Boolean, nullable=False, default=True)
 
 
 class ChatRoom(Base):
@@ -473,24 +463,6 @@ def seed_initial_data(db):
     ]
     db.add_all(users)
     db.commit()
-    
-    # デモNFTの作成（テスト用商品は削除）
-    # nfts = [
-    #     NFT(name="Aurora #001", description="美しいオーロラのアート作品", 
-    #         image_url="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1600&auto=format&fit=crop",
-    #         owner_id=1, creator_id=1, category="Art", status="listed"),
-    #     ...
-    # ]
-    # db.add_all(nfts)
-    # db.commit()
-    
-    # 出品情報の作成（テスト用商品は削除）
-    # listings = [
-    #     Listing(nft_id=1, seller_id=1, price=0.12, currency="ETH", status="active"),
-    #     ...
-    # ]
-    # db.add_all(listings)
-    # db.commit()
     
     # デモチャットルームの作成（ユーザー1とユーザー2の間）
     chat_room = ChatRoom(user1_id=1, user2_id=2)
