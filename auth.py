@@ -1,6 +1,6 @@
 """
 認証機能モジュール
-- 4桁番号ログイン
+- 6桁OTPログイン
 - 出品者のみパスワード+5桁ユーザー名必須
 """
 from passlib.context import CryptContext
@@ -50,10 +50,6 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 def get_password_hash(password: str) -> str:
     """パスワードをハッシュ化"""
     return pwd_context.hash(password)
-
-def generate_login_code() -> str:
-    """4桁のログインコードを生成（後方互換性のため残す）"""
-    return f"{random.randint(1000, 9999)}"
 
 def generate_otp() -> str:
     """6桁のOTPを生成"""
@@ -217,7 +213,6 @@ def validate_password(password: str, user_type: str) -> tuple[bool, str]:
 
 def generate_user_tag(db: Session) -> str:
     """4桁のユーザー識別子を生成（#0001-#9999）"""
-    import random
     max_attempts = 1000
     
     for _ in range(max_attempts):
