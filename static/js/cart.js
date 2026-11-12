@@ -42,18 +42,6 @@ function setCart(list) {
   updateCartCount();
 }
 
-function getPurchases() {
-  try {
-    return JSON.parse(localStorage.getItem("nft_purchases") || "[]");
-  } catch {
-    return [];
-  }
-}
-
-function setPurchases(list) {
-  localStorage.setItem("nft_purchases", JSON.stringify(list));
-}
-
 function updateCartCount() {
   if (cartCountEl) {
     const count = getCart().length;

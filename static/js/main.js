@@ -87,17 +87,6 @@ async function fetchBlockchainInfo() {
 const popular = document.getElementById("popular");
 const toast = document.getElementById("toast");
 const cartCount = document.getElementById("cartCount");
-const modal = document.getElementById("modal");
-const modalSummary = document.getElementById("modalSummary");
-const modalClose = document.getElementById("modalClose");
-const confirmBuy = document.getElementById("confirmBuy");
-
-// ローカルストレージ管理（フォールバック用）
-function seedCatalogIfEmpty() {
-  // APIから取得するため、この関数は使用しない
-}
-
-let selectedNft = null;
 
 // カート管理
 function getCart() {
@@ -111,19 +100,6 @@ function getCart() {
 function setCart(list) {
   localStorage.setItem("nft_cart", JSON.stringify(list));
   updateCartCount();
-}
-
-// 購入履歴管理
-function getPurchases() {
-  try {
-    return JSON.parse(localStorage.getItem("nft_purchases") || "[]");
-  } catch {
-    return [];
-  }
-}
-
-function setPurchases(list) {
-  localStorage.setItem("nft_purchases", JSON.stringify(list));
 }
 
 // カートカウント更新
@@ -145,26 +121,6 @@ function showToast(message) {
   setTimeout(() => {
     toast.style.display = "none";
   }, 2200);
-}
-
-// モーダル管理
-function openModal(nft) {
-  selectedNft = nft;
-  if (modalSummary) {
-    modalSummary.textContent = `${nft.name} を ${formatEth(nft.priceEth)} HLC で購入します。`;
-  }
-  if (modal) {
-    modal.style.display = "flex";
-    modal.setAttribute("aria-hidden", "false");
-  }
-}
-
-function closeModal() {
-  if (modal) {
-    modal.style.display = "none";
-    modal.setAttribute("aria-hidden", "true");
-  }
-  selectedNft = null;
 }
 
 // カートに追加
@@ -277,44 +233,9 @@ async function init() {
     // 人気NFTの表示
     if (nfts && nfts.length > 0) {
       renderPopular(nfts);
-    } else {
-      // フォールバック: ローカルストレージから取得
-      const localNfts = JSON.parse(localStorage.getItem('japanft_catalog') || '[]');
-      if (localNfts.length > 0) {
-        renderPopular(localNfts);
-      }
     }
   } catch (error) {
     console.error('初期化エラー:', error);
-    // フォールバック処理
-    const localNfts = JSON.parse(localStorage.getItem('japanft_catalog') || '[]');
-    if (localNfts.length > 0) {
-      renderPopular(localNfts);
-    }
-  }
-  
-  // モーダルのイベントリスナー
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
-  }
-  
-  if (modalClose) {
-    modalClose.addEventListener("click", closeModal);
-  }
-  
-  if (confirmBuy) {
-    confirmBuy.addEventListener("click", () => {
-      if (!selectedNft) return;
-      const purchases = getPurchases();
-      purchases.unshift({ ...selectedNft, purchasedAt: Date.now() });
-      setPurchases(purchases);
-      closeModal();
-      showToast(`${selectedNft.name} を購入しました！`);
-    });
   }
   
   // カートカウントの更新
