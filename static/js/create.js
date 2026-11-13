@@ -307,26 +307,6 @@ if (document.readyState === 'loading') {
 }
 
 ////////
-/*$(function(){
-  $(".hamburger").click(function () {
-    $(this).toggleClass("active");
-    $(".nav-actions").toggleClass("active");
-    $(".overlay").toggleClass("active");
-  });
-  
-  $(".navi a").click(function () {
-    $(".hamburger").removeClass("active");
-    $(".nav-actions").removeClass("active");
-    $(".overlay").removeClass("active");
-  });
-
-  $(".mask").click(function(){
-    $(".hamburger").removeClass("active");
-    $(".nav-actions").removeClass("active");
-    $(".overlay").removeClass("active");
-  });
-});
-*/
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.querySelector(".hamburger");
   const nav = document.querySelector(".nav-actions");
