@@ -1,7 +1,7 @@
 from ecdsa import BadSignatureError, VerifyingKey, SECP256k1
 import binascii
 import json
-import pandas as pd
+import pickle
 import os
 import hashlib
 from datetime import datetime, timezone
@@ -13,7 +13,6 @@ POW_DIFFICULTY_ORIGIN = 1  # 低難易度に設定（デモ用）
 POW_CHANGE_BLOCK_NUM = 10
 POW_TARGET_SEC = 10
 REWARD_AMOUNT_ORIGIN = 25  # 報酬を25HLCに設定
-REWARD_CHANGE_BLOCK_NUM = 10
 TRANSACTION_FILE = "./transaction_data.pkl"
 BLOCKCHAIN_FILE = "./chain_data.pkl"
 
@@ -33,11 +32,13 @@ class BlockChain(object):
         self.current_pow_difficulty = POW_DIFFICULTY_ORIGIN
 
     def save_transaction_pool(self):
-        pd.to_pickle(self.transaction_pool, TRANSACTION_FILE)
+        with open(TRANSACTION_FILE, "wb") as f:
+            pickle.dump(self.transaction_pool, f)
 
     def load_transaction_pool(self):
         if os.path.exists(TRANSACTION_FILE):
-            transaction_data = pd.read_pickle(TRANSACTION_FILE)
+            with open(TRANSACTION_FILE, "rb") as f:
+                transaction_data = pickle.load(f)
             return transaction_data
         else:
             return {"transactions": []}
@@ -91,11 +92,13 @@ class BlockChain(object):
                 self.all_block_transactions.append(trans)
 
     def save_blockchain(self):
-        pd.to_pickle(self.chain, BLOCKCHAIN_FILE)
+        with open(BLOCKCHAIN_FILE, "wb") as f:
+            pickle.dump(self.chain, f)
 
     def load_blockchain(self):
         if os.path.isfile(BLOCKCHAIN_FILE):
-            blockchain_data = pd.read_pickle(BLOCKCHAIN_FILE)
+            with open(BLOCKCHAIN_FILE, "rb") as f:
+                blockchain_data = pickle.load(f)
             return blockchain_data
         else:
             temp_chain = {"blocks": []}
@@ -129,7 +132,7 @@ class BlockChain(object):
                             reward_trans_flg = True
                         else:
                             return False
-                        if transaction["amount"] != self.get_reward(i):
+                        if transaction["amount"] != self.get_reward():
                             return False
                     else:
                         if self.verify_transaction(transaction) == False:
@@ -158,7 +161,7 @@ class BlockChain(object):
             "time":datetime.now(timezone.utc).isoformat(),
             "sender":"Blockchain",
             "receiver":miner,
-            "amount":self.get_reward(len(self.chain["blocks"])),
+            "amount":self.get_reward(),
             "nft_data":"",
             "nft_origin":"",
             "signature":"none"
@@ -255,7 +258,7 @@ class BlockChain(object):
                 current_pow_difficulty -= 1
         return current_pow_difficulty
     
-    def get_reward(self, ix):
+    def get_reward(self):
         # 報酬を固定で25HLCに設定
         return REWARD_AMOUNT_ORIGIN
     

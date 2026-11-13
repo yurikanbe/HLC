@@ -2049,7 +2049,7 @@ async def start_mining(
             blockchain.save_transaction_pool()
             
             # 報酬を計算（ブロックチェーン上の報酬トランザクションから計算）
-            reward = blockchain.get_reward(len(blockchain.chain["blocks"]))
+            reward = blockchain.get_reward()
             
             # マイニング報酬をDBの残高にも追加（NFT購入や送金で使用できるようにするため）
             if current_user.balance is None:
