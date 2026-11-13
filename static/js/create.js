@@ -249,7 +249,6 @@ function setupForm() {
     
     // ファイルまたはURLのいずれかが必要
     const fileInput = document.getElementById('fileInput');
-    const hasFile = fileInput && fileInput.files.length > 0;
     const hasUrl = imageUrl.trim().length > 0;
     
     if (!uploadedFileUrl && !hasUrl) {

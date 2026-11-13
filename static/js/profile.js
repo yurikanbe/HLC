@@ -13,7 +13,6 @@
   const profileImageInput = document.getElementById("profileImageInput");
   const profileImagePreview = document.getElementById("profileImagePreview");
   const profileImagePlaceholder = document.getElementById("profileImagePlaceholder");
-  const profileImageInitial = document.getElementById("profileImageInitial");
   const removeProfileImageBtn = document.getElementById("removeProfileImage");
 
   if (!displayNameEl || !walletAddressEl || !bioEl || !saveBtn || !listingsEl || !emptyMsg || !cartCountEl) {
@@ -59,23 +58,6 @@
         toast.style.display = "none";
       }, 300);
     }, 2000);
-  }
-
-  function getProfile() {
-    try {
-      return JSON.parse(localStorage.getItem("japanft_profile") || "{}");
-    } catch (error) {
-      console.error('プロフィールの読み込みエラー:', error);
-      return {};
-    }
-  }
-
-  function setProfile(p) {
-    try {
-      localStorage.setItem("japanft_profile", JSON.stringify(p));
-    } catch (error) {
-      console.error('プロフィールの保存エラー:', error);
-    }
   }
 
   // 出品データ（APIから取得）
@@ -403,12 +385,6 @@
       
       // プロフィール画像の表示を更新
       updateProfileImageDisplay(updatedProfile.profile_image_url, updatedProfile.username);
-      
-      // ローカルストレージも更新
-      const p = getProfile();
-      p.displayName = updatedProfile.username;
-      p.bio = updatedProfile.bio;
-      setProfile(p);
       
       // 初期値を更新して未保存フラグをリセット
       initialDisplayName = updatedProfile.username || '';

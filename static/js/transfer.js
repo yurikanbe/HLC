@@ -88,19 +88,9 @@ async function searchUsers(query) {
     }
 
     const users = await response.json();
-    console.log("検索結果（生データ）:", JSON.stringify(users, null, 2));
-    
     // 各ユーザーのwallet_addressを確認
     users.forEach((user, index) => {
       const hasWallet = !!user.wallet_address;
-      console.log(`ユーザー ${index + 1} (${user.username || '未設定'}):`, {
-        user_id: user.user_id,
-        username: user.username,
-        user_tag: user.user_tag,
-        wallet_address: user.wallet_address || "❌ なし",
-        has_wallet_address: hasWallet,
-        wallet_address_type: typeof user.wallet_address
-      });
       
       if (!hasWallet) {
         console.error(`⚠️ 警告: ユーザー ${user.user_id} (${user.username}) にwallet_addressがありません！`);
@@ -143,9 +133,6 @@ function displaySearchResults(users) {
 
 // ユーザーを選択
 function selectUser(user) {
-  console.log("selectUser呼び出し - 元のユーザーオブジェクト:", user);
-  console.log("wallet_addressの値:", user.wallet_address);
-  console.log("wallet_addressの型:", typeof user.wallet_address);
   
   // ユーザー情報を完全にコピー（wallet_addressが含まれていることを確認）
   selectedUser = {
@@ -158,18 +145,14 @@ function selectUser(user) {
     wallet_address: user.wallet_address  // 送金に必要
   };
   
-  console.log("選択されたユーザー（完全版）:", JSON.stringify(selectedUser, null, 2));
   
   // wallet_addressが存在しない場合は警告
   if (!selectedUser.wallet_address) {
-    console.warn("警告: 選択されたユーザーにwallet_addressが含まれていません。詳細情報を取得します。");
-    console.warn("元のユーザーオブジェクト全体:", JSON.stringify(user, null, 2));
     // APIから再度ユーザー情報を取得
     fetchUserDetails(selectedUser.user_id);
     return;
   }
   
-  console.log("wallet_addressが正常に取得されました:", selectedUser.wallet_address);
   
   recipientEl.value = "";
   userSearchResultsEl.classList.remove("active");
@@ -202,12 +185,10 @@ async function fetchUserDetails(userId) {
 
     if (response.ok) {
       const userDetails = await response.json();
-      console.log("取得したユーザー詳細:", userDetails);
       
       // wallet_addressを含めて更新
       if (userDetails.wallet_address) {
         selectedUser.wallet_address = userDetails.wallet_address;
-        console.log("wallet_addressを取得しました:", selectedUser.wallet_address);
       } else {
         showMessage("送金先ユーザーのウォレットアドレスが取得できませんでした", "error");
         clearUser();
@@ -298,7 +279,6 @@ async function sendTransfer() {
       memo: memoEl.value.trim() || null
     };
 
-    console.log("送金リクエストデータ:", requestData);
 
     // 送金APIを呼び出す
     const response = await fetch("/api/transfer", {

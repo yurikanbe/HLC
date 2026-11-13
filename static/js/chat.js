@@ -115,7 +115,7 @@
     
     try {
       const token = getAuthToken();
-      const response = await fetch(`/api/chat/rooms?current_user_id=${userId}`, {
+      const response = await fetch(`/api/chat/rooms`, {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -175,8 +175,7 @@
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          message_text: messageText,
-          sender_id: senderId
+          message_text: messageText
         })
       });
       if (!response.ok) {

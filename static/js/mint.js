@@ -105,7 +105,7 @@ function renderNFTCard(nft) {
 
   return `
     <div class="nft-card" data-nft-id="${nft.nft_id}" data-minted="${isMinted}" data-listed="${isListed}">
-      <img src="${nft.image || '/static/images/placeholder.png'}" alt="${nft.name}" class="nft-image" onerror="this.src='/static/images/placeholder.png'">
+      <img src="${nft.image || '/static/img/default_icon.png'}" alt="${nft.name}" class="nft-image" onerror="this.src='/static/img/default_icon.png'">
       <div class="nft-info">
         <div class="nft-name">${escapeHtml(nft.name)}</div>
         ${nft.description ? `<p class="muted" style="font-size: 0.9em; margin: 8px 0;">${escapeHtml(nft.description.substring(0, 60))}${nft.description.length > 60 ? '...' : ''}</p>` : ''}

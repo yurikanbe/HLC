@@ -106,7 +106,7 @@
       card.className = 'card';
       card.innerHTML = `
         <div class="thumb">
-          <img src="${listing.image || '/static/images/placeholder.png'}" alt="${listing.name}" onerror="this.src='/static/images/placeholder.png'">
+          <img src="${listing.image || '/static/img/default_icon.png'}" alt="${listing.name}" onerror="this.src='/static/img/default_icon.png'">
         </div>
         <div class="content">
           <div class="title">${escapeHtml(listing.name)}</div>
