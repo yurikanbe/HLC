@@ -425,9 +425,8 @@ async def request_login(request: LoginRequest, db: Session = Depends(get_db)):
         db.rollback()
         raise HTTPException(status_code=500, detail=f"エラーが発生しました: {str(e)}")
 
-@app.post("/api/auth/verify", response_model=TokenResponse)
-async def verify_login(request: LoginVerifyRequest, db: Session = Depends(get_db)):
-    """6桁OTPで認証"""
+async def _verify_otp(request, db: Session):
+    """OTPを検証してJWTを発行（ログイン／サインアップ共通）"""
     try:
         # ユーザーを検索
         user = db.query(User).filter(User.email == request.email).first()
@@ -465,9 +464,14 @@ async def verify_login(request: LoginVerifyRequest, db: Session = Depends(get_db
         db.rollback()
         raise HTTPException(status_code=500, detail=f"エラーが発生しました: {str(e)}")
 
-@app.post("/api/auth/login/resend", response_model=dict)
-async def resend_login_otp(request: ResendOtpRequest, db: Session = Depends(get_db)):
-    """ログインOTPを再送"""
+
+@app.post("/api/auth/verify", response_model=TokenResponse)
+async def verify_login(request: LoginVerifyRequest, db: Session = Depends(get_db)):
+    """6桁OTPで認証"""
+    return await _verify_otp(request, db)
+
+async def _resend_otp(request: ResendOtpRequest, db: Session, purpose: str):
+    """OTPを再送（ログイン／サインアップ共通）"""
     try:
         # ユーザーを検索
         user = db.query(User).filter(User.email == request.email).first()
@@ -482,7 +486,7 @@ async def resend_login_otp(request: ResendOtpRequest, db: Session = Depends(get_
         db.commit()
         
         # OTPをメール送信
-        send_otp_email(request.email, otp, purpose="ログイン", username=user.username)
+        send_otp_email(request.email, otp, purpose=purpose, username=user.username)
         
         return {
             "message": "6桁のOTPコードをメールで再送信しました",
@@ -493,6 +497,12 @@ async def resend_login_otp(request: ResendOtpRequest, db: Session = Depends(get_
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail=f"エラーが発生しました: {str(e)}")
+
+
+@app.post("/api/auth/login/resend", response_model=dict)
+async def resend_login_otp(request: ResendOtpRequest, db: Session = Depends(get_db)):
+    """ログインOTPを再送"""
+    return await _resend_otp(request, db, "ログイン")
 
 @app.post("/api/auth/signup", response_model=dict)
 async def signup(request: SignupRequest, db: Session = Depends(get_db)):
@@ -567,71 +577,12 @@ async def signup(request: SignupRequest, db: Session = Depends(get_db)):
 @app.post("/api/auth/signup/verify", response_model=TokenResponse)
 async def verify_signup(request: SignupVerifyRequest, db: Session = Depends(get_db)):
     """サインアップ時のOTP検証"""
-    try:
-        # ユーザーを検索
-        user = db.query(User).filter(User.email == request.email).first()
-        
-        if not user:
-            raise HTTPException(status_code=404, detail="ユーザーが見つかりません")
-        
-        # OTPの検証
-        if not user.login_code:
-            raise HTTPException(status_code=400, detail="OTPが発行されていません")
-        
-        if user.login_code != request.otp:
-            raise HTTPException(status_code=400, detail="OTPが正しくありません")
-        
-        if user.login_code_expires and user.login_code_expires < datetime.utcnow():
-            raise HTTPException(status_code=400, detail="OTPの有効期限が切れています")
-        
-        # OTPをクリア
-        user.login_code = None
-        user.login_code_expires = None
-        db.commit()
-        
-        # JWTトークンを発行（subは文字列である必要がある）
-        access_token = create_access_token(data={"sub": str(user.user_id)})
-        
-        return TokenResponse(
-            access_token=access_token,
-            user_id=user.user_id,
-            username=user.username,
-            user_type=user.user_type
-        )
-    except HTTPException:
-        raise
-    except Exception as e:
-        db.rollback()
-        raise HTTPException(status_code=500, detail=f"エラーが発生しました: {str(e)}")
+    return await _verify_otp(request, db)
 
 @app.post("/api/auth/signup/resend", response_model=dict)
 async def resend_signup_otp(request: ResendOtpRequest, db: Session = Depends(get_db)):
     """サインアップOTPを再送"""
-    try:
-        # ユーザーを検索
-        user = db.query(User).filter(User.email == request.email).first()
-        
-        if not user:
-            raise HTTPException(status_code=404, detail="ユーザーが見つかりません")
-        
-        # 新しいOTPを生成
-        otp = generate_otp()
-        user.login_code = otp
-        user.login_code_expires = datetime.utcnow() + timedelta(minutes=10)  # 10分間有効
-        db.commit()
-        
-        # OTPをメール送信
-        send_otp_email(request.email, otp, purpose="アカウント作成", username=user.username)
-        
-        return {
-            "message": "6桁のOTPコードをメールで再送信しました",
-            "expires_in": 600  # 10分
-        }
-    except HTTPException:
-        raise
-    except Exception as e:
-        db.rollback()
-        raise HTTPException(status_code=500, detail=f"エラーが発生しました: {str(e)}")
+    return await _resend_otp(request, db, "アカウント作成")
 
 @app.get("/api/auth/me")
 async def get_current_user_info(
