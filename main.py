@@ -39,7 +39,6 @@ class Block(BaseModel):
     time: str
     transactions: List[Transaction]
     hash: str
-    previous_hash: str | None = None
     nonce: int
 
 
@@ -118,22 +117,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 # エラーハンドラー（templates定義後に配置）
-@app.exception_handler(404)
-async def not_found_handler(request: Request, exc: HTTPException):
-    """404エラーハンドラー"""
-    return templates.TemplateResponse("error.html", {
-        "request": request,
-        "code": 404
-    }, status_code=404)
-
-@app.exception_handler(500)
-async def internal_error_handler(request: Request, exc: Exception):
-    """500エラーハンドラー"""
-    return templates.TemplateResponse("error.html", {
-        "request": request,
-        "code": 500
-    }, status_code=500)
-
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     """バリデーションエラーハンドラー（422エラー）"""
@@ -961,9 +944,6 @@ async def get_my_listings(
         results = []
         for listing in listings:
             nft = listing.nft
-            # 念のため、所有者が現在のユーザーであることを再確認
-            if nft.owner_id != current_user.user_id:
-                continue  # 所有者が変更されている場合はスキップ
             results.append({
                 "listing_id": listing.listing_id,
                 "nft_id": nft.nft_id,
@@ -1420,7 +1400,6 @@ async def mint_nft(
     """
     try:
         # レート制限チェック（1時間あたり10回まで）
-        from datetime import datetime, timedelta
         one_hour_ago = datetime.utcnow() - timedelta(hours=1)
         recent_mints = db.query(NFTModel).filter(
             NFTModel.creator_id == current_user.user_id,
@@ -1482,9 +1461,8 @@ async def mint_nft(
         
         # NFTミント用のトランザクションを作成
         # amount=0でNFT情報を含むトランザクション
-        from datetime import datetime, timezone
+        from datetime import timezone
         import hashlib
-        import json
         
         time_now = datetime.now(timezone.utc).isoformat()
         
@@ -2322,7 +2300,6 @@ async def send_chat_message(
         db.add(message)
         
         # ルームの更新日時を更新
-        from datetime import datetime
         room.updated_at = datetime.utcnow()
         
         # 受信者に通知を送信（送信者以外のユーザー）
